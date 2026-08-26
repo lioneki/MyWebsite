@@ -44,7 +44,10 @@ export const content = {
       tabCv: '02 / CV',
       aboutTitle: '关于我',
       aboutParagraphs: [
-        '我是一名来自中国沿海的视觉设计师、CG 艺术家与影像作者，创作横跨平面与影像。我是一个朋克中的浪漫主义者，在极端的视角下寻找足够锋利的表达方式。比起艺术，我更热爱地下文化对于表达的态度。我目标成为一个通才，不受限地提升自己各方面技能和素养。',
+        '我是一名来自中国沿海的视觉设计师、CG 艺术家与影像作者，创作横跨平面与影像。',
+        '我是一个朋克中的浪漫主义者，在极端的视角下寻找足够锋利的表达方式。',
+        '比起艺术，我更热爱地下文化对于表达的态度。',
+        '我目标成为一个通才，不受限地提升自己各方面技能和素养。',
         '目前在日本进修影像专业，同时持续接一些商业与独立项目的合作，也保持着每天制作一个视觉作品的习惯。',
       ],
       facts: [
@@ -145,7 +148,10 @@ export const content = {
       tabCv: '02 / CV',
       aboutTitle: 'About',
       aboutParagraphs: [
-        "I'm a visual designer, CG artist and filmmaker from coastal China, working across print and film. I'm a romantic within punk — chasing a sharp enough way to say things from an extreme angle. More than art itself, what I love is underground culture's attitude toward expression. My goal is to become a generalist, growing my skills and taste without limits.",
+        "I'm a visual designer, CG artist and filmmaker from coastal China, working across print and film.",
+        "I'm a romantic within punk — chasing a sharp enough way to say things from an extreme angle.",
+        "More than art itself, what I love is underground culture's attitude toward expression.",
+        "My goal is to become a generalist, growing my skills and taste without limits.",
         "I'm currently studying film in Japan, taking on commercial and independent projects along the way, and keeping a daily habit of making one visual.",
       ],
       facts: [

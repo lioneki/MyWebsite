@@ -657,9 +657,8 @@ button {
 
 .link-row {
   display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 24px;
+  align-items: center;
+  gap: 16px;
   padding: 16px 0;
   border-bottom: 1px solid var(--line);
   transition: color 0.2s ease;
@@ -669,26 +668,17 @@ button {
   color: var(--accent);
 }
 
-.link-row .link-label {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-
 .link-icon {
-  width: 15px;
-  height: 15px;
+  width: 26px;
+  height: 26px;
+  flex-shrink: 0;
   color: var(--accent);
 }
 
 .link-row .link-value {
   font-family: var(--font-mono);
-  font-size: 14px;
+  font-size: 15px;
+  letter-spacing: 0.02em;
 }
 
 /* CV 时间线 */

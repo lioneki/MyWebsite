@@ -100,10 +100,7 @@ export default function Profile() {
                     target={c.href.startsWith('http') ? '_blank' : undefined}
                     rel={c.href.startsWith('http') ? 'noreferrer' : undefined}
                   >
-                    <span className="link-label">
-                      {Icon && <Icon className="link-icon" />}
-                      {c.label}
-                    </span>
+                    {Icon && <Icon className="link-icon" />}
                     <span className="link-value">{c.value}</span>
                   </a>
                 )
