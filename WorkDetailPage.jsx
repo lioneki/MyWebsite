@@ -66,10 +66,19 @@ export default function WorkDetailPage() {
             </div>
           </div>
 
-          <div className="work-detail-media">
-            {work.image && <img src={work.image} alt={title} />}
-            <CornerMarks inset={20} />
-          </div>
+          {work.images && work.images.length > 0 ? (
+            work.images.map((src, i) => (
+              <div className="work-detail-media" key={src}>
+                <img src={src} alt={`${title} ${i + 1}`} />
+                <CornerMarks inset={20} />
+              </div>
+            ))
+          ) : (
+            <div className="work-detail-media">
+              {work.image && <img src={work.image} alt={title} />}
+              <CornerMarks inset={20} />
+            </div>
+          )}
 
           <div className="wrap">
             {desc && <p className="work-detail-desc">{desc}</p>}

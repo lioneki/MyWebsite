@@ -28,6 +28,16 @@ export function IconPaypal(props) {
   )
 }
 
+export function IconXiaohongshu(props) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" {...props}>
+      <rect x="3" y="3" width="18" height="18" rx="5" />
+      <path d="M8 7.5v9M8 7.5c2.6 0 3.6 1.6 3.6 3.4S10.6 14 8 14" />
+      <path d="M15 8v8M13.2 16l3.6-3.2-3.6-3.3" />
+    </svg>
+  )
+}
+
 export function IconMail(props) {
   return (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" {...props}>

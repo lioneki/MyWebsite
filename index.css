@@ -652,15 +652,18 @@ button {
 /* 联系方式：去掉表格式描边，改成带底线的链接列表 */
 .link-list {
   margin-top: 32px;
+  padding-top: 24px;
   border-top: 1px solid var(--line);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 20px 40px;
 }
 
 .link-row {
   display: flex;
   align-items: center;
-  gap: 16px;
-  padding: 16px 0;
-  border-bottom: 1px solid var(--line);
+  gap: 12px;
   transition: color 0.2s ease;
 }
 
@@ -1335,7 +1338,7 @@ button {
 .work-detail-media {
   position: relative;
   width: 100%;
-  max-width: var(--max-w);
+  max-width: calc(var(--max-w) / 2);
   margin: 0 auto 48px;
   aspect-ratio: 16 / 9;
   overflow: hidden;

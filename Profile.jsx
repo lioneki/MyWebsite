@@ -2,12 +2,13 @@ import { useState } from 'react'
 import { useLanguage } from './LanguageContext.jsx'
 import { content } from './content.js'
 import { CornerMarks, DiagonalLine } from './Decor.jsx'
-import { IconMail, IconInstagram, IconYoutube } from './icons.jsx'
+import { IconMail, IconInstagram, IconYoutube, IconXiaohongshu } from './icons.jsx'
 
 const contactIcons = {
   mail: IconMail,
   instagram: IconInstagram,
   youtube: IconYoutube,
+  xiaohongshu: IconXiaohongshu,
 }
 
 export default function Profile() {
