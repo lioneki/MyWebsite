@@ -20,7 +20,7 @@ export default function ContactFooter() {
         <div className="footer-actions">
           <a className="btn btn-solid btn-lg" href="contact.html">
             {t.inquiryBtn}
-            <IconArrowRight style={{ width: 14, height: 14 }} />
+            <IconArrowRight style={{ width: 14, height: 14 }} aria-hidden="true" />
           </a>
           <div className="footer-email-row">
             <span>{t.emailLabel}</span>

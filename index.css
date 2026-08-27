@@ -106,6 +106,69 @@ button {
   color: #0a0a0b;
 }
 
+/* ---------- 可访问性：键盘焦点 ---------- */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+.work-tile:focus-visible,
+.daily-card:focus-visible {
+  outline: 1px solid var(--accent);
+  outline-offset: 4px;
+}
+
+.skip-link {
+  position: fixed;
+  top: -60px;
+  left: 16px;
+  z-index: 1000;
+  background: var(--accent);
+  color: #0a0a0b;
+  padding: 10px 18px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-radius: 2px;
+  transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+  top: 16px;
+  outline: none;
+}
+
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  z-index: 1000;
+  pointer-events: none;
+}
+
+.scroll-progress-bar {
+  height: 100%;
+  width: 0%;
+  background: var(--accent);
+}
+
+/* ---------- 尊重"减少动态效果"系统设置 ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 .wrap {
   max-width: var(--max-w);
   margin: 0 auto;
@@ -285,6 +348,21 @@ button {
 .nav-links a:hover {
   opacity: 1;
   color: var(--accent);
+}
+
+.nav-links a.active {
+  opacity: 1;
+  color: var(--accent);
+}
+
+.nav-links a.active::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: var(--accent);
 }
 
 .lang-toggle {
@@ -1426,8 +1504,13 @@ button {
 
 .form-field input:focus,
 .form-field textarea:focus {
-  outline: none;
   border-color: var(--accent);
+}
+
+.form-field input:focus-visible,
+.form-field textarea:focus-visible {
+  outline: 1px solid var(--accent);
+  outline-offset: 6px;
 }
 
 .form-field input::placeholder,

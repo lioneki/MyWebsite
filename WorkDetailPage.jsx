@@ -17,12 +17,22 @@ export default function WorkDetailPage() {
   }, [])
 
   const work = mainWorks.find((w) => w.id === id)
+  const title = work ? (lang === 'zh' ? work.titleZh : work.titleEn) : null
+  const category = work ? (lang === 'zh' ? work.categoryZh : work.categoryEn) : null
+  const desc = work ? (lang === 'zh' ? work.descZh : work.descEn) : null
+
+  // 浏览器标签页标题跟着当前作品走，方便收藏/分享链接时能一眼看出是哪件作品
+  // 注意：这个 effect 必须放在下面的条件 return 之前调用，否则不同渲染路径下 hook 调用次数不一致，
+  // React 会报错导致整个页面白屏（之前的 bug 就是这么来的）
+  useEffect(() => {
+    if (title) document.title = `${title} — LEON YI`
+  }, [title])
 
   if (id !== null && !work) {
     return (
       <>
         <Nav />
-        <main>
+        <main id="main-content">
           <section className="section work-detail-section">
             <div className="wrap">
               <a href="portfolio.html" className="portfolio-back">
@@ -41,19 +51,15 @@ export default function WorkDetailPage() {
     return (
       <>
         <Nav />
-        <main />
+        <main id="main-content" />
       </>
     )
   }
 
-  const title = lang === 'zh' ? work.titleZh : work.titleEn
-  const category = lang === 'zh' ? work.categoryZh : work.categoryEn
-  const desc = lang === 'zh' ? work.descZh : work.descEn
-
   return (
     <>
       <Nav />
-      <main>
+      <main id="main-content">
         <section className="work-detail-section">
           <div className="wrap">
             <a href="portfolio.html" className="portfolio-back">
@@ -69,13 +75,18 @@ export default function WorkDetailPage() {
           {work.images && work.images.length > 0 ? (
             work.images.map((src, i) => (
               <div className="work-detail-media" key={src}>
-                <img src={src} alt={`${title} ${i + 1}`} />
+                <img
+                  src={src}
+                  alt={`${title} ${i + 1}`}
+                  loading={i === 0 ? 'eager' : 'lazy'}
+                  decoding="async"
+                />
                 <CornerMarks inset={20} />
               </div>
             ))
           ) : (
             <div className="work-detail-media">
-              {work.image && <img src={work.image} alt={title} />}
+              {work.image && <img src={work.image} alt={title} loading="eager" decoding="async" />}
               <CornerMarks inset={20} />
             </div>
           )}

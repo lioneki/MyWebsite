@@ -23,7 +23,7 @@ export default function App() {
   return (
     <>
       <Nav />
-      <main>
+      <main id="main-content">
         <Hero />
         <Profile />
         <Work />

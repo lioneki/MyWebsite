@@ -28,7 +28,12 @@ export default function Profile() {
 
         <div className="profile-grid">
           <div className="portrait arch">
-            <img className="portrait-img" src="/profile/portrait-web.jpg" alt="portrait" />
+            <img
+              className="portrait-img"
+              src="/profile/portrait-web.jpg"
+              alt={content[lang].siteName}
+              decoding="async"
+            />
             <CornerMarks inset={14} />
             <span className="portrait-tag">{t.availability}</span>
             <span className="portrait-corner">FIG. 01</span>

@@ -39,7 +39,9 @@ export default function PortfolioPage() {
             key={w.id}
           >
             <div className="editorial-visual">
-              {w.image && <img className="work-media" src={w.image} alt={titleFor(w)} />}
+              {w.image && (
+                <img className="work-media" src={w.image} alt={titleFor(w)} loading="lazy" decoding="async" />
+              )}
               <span className="work-media-overlay editorial-overlay" />
               <CornerMarks inset={14} />
             </div>
@@ -59,7 +61,7 @@ export default function PortfolioPage() {
   return (
     <>
       <Nav />
-      <main>
+      <main id="main-content">
         <section className="portfolio-page-head">
           <CornerMarks inset={20} />
           <DiagonalLine style={{ top: '2%', right: '12%', height: '90%', transform: 'rotate(8deg)' }} />
@@ -105,10 +107,10 @@ export default function PortfolioPage() {
             </div>
             <div className="daily-grid">
               {dailyWorks.map((w) => (
-                <a className="daily-card" href="#" key={w.id}>
+                <div className="daily-card" key={w.id}>
                   <span>{w.id}</span>
                   <span>{w.date}</span>
-                </a>
+                </div>
               ))}
             </div>
           </div>

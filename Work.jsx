@@ -27,7 +27,9 @@ export default function Work() {
       <div className="work-grid-uniform work-grid-large">
         {items.map((w) => (
           <a className="work-tile" href={w.image ? `work.html?id=${w.id}` : '#'} key={w.id}>
-            {w.image && <img className="work-media" src={w.image} alt={titleFor(w)} />}
+            {w.image && (
+              <img className="work-media" src={w.image} alt={titleFor(w)} loading="lazy" decoding="async" />
+            )}
             <span className="work-media-overlay" />
             <div className="work-tile-meta">
               <h3 className="work-card-title">{titleFor(w)}</h3>
@@ -79,7 +81,7 @@ export default function Work() {
         <div className="work-cta-row">
           <a href="portfolio.html" className="btn btn-solid btn-xl">
             {t.cta}
-            <IconArrowRight style={{ width: 18, height: 18 }} />
+            <IconArrowRight style={{ width: 18, height: 18 }} aria-hidden="true" />
           </a>
         </div>
       </div>

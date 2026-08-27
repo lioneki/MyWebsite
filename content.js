@@ -14,13 +14,13 @@ export const social = {
 export const nav = {
   zh: [
     { label: '关于', href: 'index.html#profile' },
-    { label: '作品', href: 'portfolio.html' },
+    { label: '作品', href: 'index.html#work' },
     { label: '打赏', href: 'index.html#support' },
     { label: '联系', href: 'index.html#contact' },
   ],
   en: [
     { label: 'Profile', href: 'index.html#profile' },
-    { label: 'Work', href: 'portfolio.html' },
+    { label: 'Work', href: 'index.html#work' },
     { label: 'Support', href: 'index.html#support' },
     { label: 'Contact', href: 'index.html#contact' },
   ],
@@ -124,6 +124,9 @@ export const content = {
       submit: '发送 →',
       back: '← 返回首页',
       note: '首次发送后，请到 lionekikun@gmail.com 的收件箱确认一次激活邮件，之后的消息会正常送达。',
+      sentTitle: '已经发出去了',
+      sentDesc: '谢谢你的消息，我会尽快回复。如果这是你第一次发送，记得去 lionekikun@gmail.com 确认一下激活邮件。',
+      sentBack: '← 返回首页',
     },
     workPage: {
       back: '← 返回作品集',
@@ -229,6 +232,9 @@ export const content = {
       submit: 'Send →',
       back: '← Back home',
       note: 'After the first submission, please confirm the activation email in the lionekikun@gmail.com inbox — messages after that will be delivered normally.',
+      sentTitle: 'Message sent',
+      sentDesc: "Thanks for reaching out — I'll get back to you soon. If this is your first time, check lionekikun@gmail.com for an activation email.",
+      sentBack: '← Back home',
     },
     workPage: {
       back: '← Back to work',
