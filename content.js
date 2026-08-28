@@ -34,7 +34,7 @@ export const content = {
       roles: ['视觉设计师', 'CG 艺术家', '影像作者', '艺术家'],
       titleTop: 'LEON',
       titleBottom: 'YI',
-      tagline: ['视觉设计 · CG · 影像', '伤口是光进入的地方'],
+      tagline: ['伤口是光进入的地方'],
       scroll: '向下滚动 · SCROLL',
     },
     profile: {
@@ -142,7 +142,7 @@ export const content = {
       roles: ['Visual Designer', 'CG Artist', 'Filmmaker', 'Artist'],
       titleTop: 'LEON',
       titleBottom: 'YI',
-      tagline: ['Visual design · CG · Film', 'The wound is where the light enters.'],
+      tagline: ['The wound is where the light enters.'],
       scroll: 'SCROLL DOWN',
     },
     profile: {

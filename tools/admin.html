@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>添加作品 — 本地管理工具</title>
+    <style>
+      :root {
+        --bg: #0b0c0d;
+        --panel: #17181a;
+        --line: rgba(255, 255, 255, 0.1);
+        --fg: #e9e9e7;
+        --fg-dim: #9a9c9f;
+        --accent: #93a6ba;
+        --danger: #e08585;
+        --ok: #8fbf9a;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--fg);
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+        padding: 48px 24px 96px;
+      }
+      .wrap {
+        max-width: 640px;
+        margin: 0 auto;
+      }
+      h1 {
+        font-size: 22px;
+        font-weight: 600;
+        margin: 0 0 6px;
+      }
+      .sub {
+        color: var(--fg-dim);
+        font-size: 13px;
+        margin: 0 0 36px;
+        line-height: 1.6;
+      }
+      fieldset {
+        border: none;
+        padding: 0;
+        margin: 0 0 28px;
+      }
+      .row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+      label {
+        display: block;
+        font-size: 12px;
+        letter-spacing: 0.04em;
+        color: var(--fg-dim);
+        margin: 0 0 6px;
+      }
+      label .req {
+        color: var(--danger);
+      }
+      .field {
+        margin-bottom: 18px;
+      }
+      .hint {
+        font-size: 11px;
+        color: var(--fg-dim);
+        opacity: 0.75;
+        margin-top: 5px;
+      }
+      input[type='text'],
+      input[type='number'],
+      select,
+      textarea {
+        width: 100%;
+        background: var(--panel);
+        border: 1px solid var(--line);
+        color: var(--fg);
+        padding: 10px 12px;
+        font-size: 14px;
+        border-radius: 4px;
+        font-family: inherit;
+      }
+      textarea {
+        min-height: 64px;
+        resize: vertical;
+      }
+      input[type='file'] {
+        width: 100%;
+        font-size: 13px;
+        color: var(--fg-dim);
+      }
+      input:focus,
+      select:focus,
+      textarea:focus {
+        outline: 1px solid var(--accent);
+        outline-offset: 1px;
+      }
+      button {
+        appearance: none;
+        border: none;
+        background: var(--accent);
+        color: #0a0a0b;
+        font-size: 14px;
+        font-weight: 600;
+        padding: 13px 28px;
+        border-radius: 4px;
+        cursor: pointer;
+        letter-spacing: 0.02em;
+      }
+      button:disabled {
+        opacity: 0.5;
+        cursor: default;
+      }
+      .msg {
+        margin-top: 20px;
+        padding: 14px 16px;
+        border-radius: 4px;
+        font-size: 13px;
+        line-height: 1.6;
+        display: none;
+      }
+      .msg.show {
+        display: block;
+      }
+      .msg.ok {
+        background: rgba(143, 191, 154, 0.12);
+        border: 1px solid rgba(143, 191, 154, 0.35);
+        color: var(--ok);
+      }
+      .msg.err {
+        background: rgba(224, 133, 133, 0.12);
+        border: 1px solid rgba(224, 133, 133, 0.35);
+        color: var(--danger);
+      }
+      .section-title {
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--accent);
+        margin: 0 0 14px;
+        padding-top: 6px;
+        border-top: 1px solid var(--line);
+      }
+      fieldset:first-of-type .section-title {
+        border-top: none;
+        padding-top: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <h1>添加作品</h1>
+      <p class="sub">
+        提交后会自动压缩图片、存进 public/works/，并把作品信息写入 content.js。首页 Work 区和作品详情页会同步出现新作品——用
+        <code>npm run dev</code> 就能看到效果，确认没问题再照常构建发布。
+      </p>
+
+      <form id="f">
+        <fieldset>
+          <div class="section-title">基本信息</div>
+          <div class="row">
+            <div class="field">
+              <label>中文标题 <span class="req">*</span></label>
+              <input type="text" name="titleZh" required />
+            </div>
+            <div class="field">
+              <label>英文标题 <span class="req">*</span></label>
+              <input type="text" name="titleEn" required />
+            </div>
+          </div>
+          <div class="row">
+            <div class="field">
+              <label>中文分类 <span class="req">*</span></label>
+              <input type="text" name="categoryZh" required placeholder="例如：钢笔手稿 / 摄影 / CG 动画" />
+            </div>
+            <div class="field">
+              <label>英文分类 <span class="req">*</span></label>
+              <input type="text" name="categoryEn" required placeholder="e.g. Ink Sketches / Photography" />
+            </div>
+          </div>
+          <div class="row">
+            <div class="field">
+              <label>类型（对应 Work 区分类标签）<span class="req">*</span></label>
+              <select name="type" required>
+                <option value="video">视频 / Video</option>
+                <option value="static">平面 / Graphic</option>
+                <option value="game">游戏 / Game</option>
+                <option value="music">音乐声音 / Music/Sound</option>
+                <option value="painting">绘画 / Painting</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>年份 <span class="req">*</span></label>
+              <input type="text" name="year" required placeholder="2026" />
+            </div>
+          </div>
+          <div class="field">
+            <label>时长（可选，仅视频类作品需要）</label>
+            <input type="text" name="duration" placeholder="例如 3:11" />
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <div class="section-title">简介（可选，用于作品详情页）</div>
+          <div class="field">
+            <label>中文简介</label>
+            <textarea name="descZh"></textarea>
+          </div>
+          <div class="field">
+            <label>英文简介</label>
+            <textarea name="descEn"></textarea>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <div class="section-title">图片</div>
+          <div class="field">
+            <label>封面图（Work 区缩略图 + 详情页默认图）<span class="req">*</span></label>
+            <input type="file" name="image" accept="image/*" required />
+            <div class="hint">会自动压缩到宽度约 1600px，质量 82%</div>
+          </div>
+          <div class="field">
+            <label>详情页画廊图（可选，可多选，用于像"2025手稿"那样的多图作品）</label>
+            <input type="file" name="images" accept="image/*" multiple />
+            <div class="hint">会自动压缩到宽度约 2000px，质量 82%</div>
+          </div>
+        </fieldset>
+
+        <button type="submit" id="submitBtn">提交并写入</button>
+        <div class="msg" id="msg"></div>
+      </form>
+    </div>
+
+    <script>
+      const form = document.getElementById('f')
+      const msg = document.getElementById('msg')
+      const btn = document.getElementById('submitBtn')
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault()
+        btn.disabled = true
+        btn.textContent = '处理中…'
+        msg.className = 'msg'
+
+        try {
+          const fd = new FormData(form)
+          const resp = await fetch('/api/add-work', { method: 'POST', body: fd })
+          const data = await resp.json()
+          if (!resp.ok || !data.ok) throw new Error(data.error || '提交失败')
+
+          msg.textContent = `已添加「${data.titleZh} / ${data.titleEn}」，ID: ${data.id}，写入 ${1 + (data.images ? data.images.length : 0)} 张图片。可以关掉这个页面，运行 npm run dev 查看效果。`
+          msg.className = 'msg ok show'
+          form.reset()
+        } catch (err) {
+          msg.textContent = '出错了：' + err.message
+          msg.className = 'msg err show'
+        } finally {
+          btn.disabled = false
+          btn.textContent = '提交并写入'
+        }
+      })
+    </script>
+  </body>
+</html>

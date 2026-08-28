@@ -5,7 +5,7 @@ const STORAGE_KEY = 'site-lang'
 
 export function LanguageProvider({ children }) {
   const [lang, setLangState] = useState(() => {
-    if (typeof window === 'undefined') return 'zh'
+    if (typeof window === 'undefined') return 'en'
     // URL 上带 ?lang=en / ?lang=zh 时优先生效，方便分发"默认英文"或"默认中文"的链接
     const urlLang = new URLSearchParams(window.location.search).get('lang')
     if (urlLang === 'en' || urlLang === 'zh') {
@@ -16,7 +16,8 @@ export function LanguageProvider({ children }) {
       }
       return urlLang
     }
-    return localStorage.getItem(STORAGE_KEY) === 'en' ? 'en' : 'zh'
+    // 默认优先显示英文，除非用户之前手动切换过语言（存在 localStorage 里）
+    return localStorage.getItem(STORAGE_KEY) === 'zh' ? 'zh' : 'en'
   })
 
   useEffect(() => {

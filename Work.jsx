@@ -10,6 +10,8 @@ export default function Work() {
   const { lang } = useLanguage()
   const t = content[lang].work
   const [active, setActive] = useState('video')
+  const [hoverImg, setHoverImg] = useState(null)
+  const [hoverActive, setHoverActive] = useState(false)
 
   const titleFor = (w) => (lang === 'zh' ? w.titleZh : w.titleEn)
   const catFor = (w) => (lang === 'zh' ? w.categoryZh : w.categoryEn)
@@ -21,12 +23,25 @@ export default function Work() {
     painting: t.tabPainting,
   }
 
+  const handleTileEnter = (w) => {
+    if (!w.image) return
+    setHoverImg(w.image)
+    setHoverActive(true)
+  }
+  const handleTileLeave = () => setHoverActive(false)
+
   const renderGrid = (key) => {
     const items = mainWorks.filter((w) => w.type === key)
     return (
       <div className="work-grid-uniform work-grid-large">
         {items.map((w) => (
-          <a className="work-tile" href={w.image ? `work.html?id=${w.id}` : '#'} key={w.id}>
+          <a
+            className="work-tile"
+            href={w.image ? `work.html?id=${w.id}` : '#'}
+            key={w.id}
+            onMouseEnter={() => handleTileEnter(w)}
+            onMouseLeave={handleTileLeave}
+          >
             {w.image && (
               <img className="work-media" src={w.image} alt={titleFor(w)} loading="lazy" decoding="async" />
             )}
@@ -45,7 +60,15 @@ export default function Work() {
   }
 
   return (
-    <section id="work" className="section work">
+    <section id="work" className="section work" onMouseLeave={handleTileLeave}>
+      <div className="work-backdrop" aria-hidden="true">
+        <div
+          className={`work-backdrop-img ${hoverActive && hoverImg ? 'active' : ''}`}
+          style={hoverImg ? { backgroundImage: `url(${hoverImg})` } : undefined}
+        />
+        <div className="work-backdrop-veil" />
+      </div>
+
       <DiagonalLine style={{ top: '6%', left: '96%', height: '80%', transform: 'rotate(11deg)' }} />
 
       <div className="wrap">
