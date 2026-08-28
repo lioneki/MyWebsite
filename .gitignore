@@ -1,3 +1,6 @@
 node_modules
 dist
 .DS_Store
+tools/
+添加作品.bat
+debug-path.txt
